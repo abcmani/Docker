@@ -3,8 +3,10 @@ This project is a good start for a beginner who just learned about docker concep
 After getting familiar with docker, try hands on by writing a docker file and install nginx server and run it.
 
 # Prerequisites
-- Docker concepts & commands
-- Install Docker
+- [x] Docker concepts & commands  
+- [x] Install Docker             
+- [x] Some unix platform
+- [ ] EC2 Instance
 
 # Step 1: Copy the nginx_handson directory and get into it
 >[ec2-user@ip-172-31-14-140 mani]$ cd nginx_handson/  
@@ -57,6 +59,31 @@ After getting familiar with docker, try hands on by writing a docker file and in
 >4778fe9ccc6e,        my_nginx_image,      "/usr/sbin/nginx -g …",   2 minutes ago,       Up 10 seconds,       0.0.0.0:80->80/tcp,   App1
 
 # Step 5: Use your application
+Just accessed a html file from application through port 80
 >[ec2-user@ip-172-31-14-140 mani]$ **curl localhost:80/index.html**  
 >I am a HTML file
 
+# Step 6:Login to Docker hub
+>[ec2-user@ip-172-31-14-140 mani]$ **sudo docker login**  
+>Login with your Docker ID to push and pull images from Docker Hub. If you don't have a Docker ID, head over to https://hub.docker.com to create one.  
+>Username: **maniabc**  
+>Password:  
+>WARNING! Your password will be stored unencrypted in /root/.docker/config.json.  
+>Configure a credential helper to remove this warning. See
+>https://docs.docker.com/engine/reference/commandline/login/#credentials-store
+
+>Login Succeeded
+
+# Step 7: Tag your image and push to docker hub
+After executing the below commands., just login to docker hub via web and you can see your image in your repository with the tag name given   
+>[ec2-user@ip-172-31-14-140 mani]$ **sudo docker tag my_nginx_image maniabc/nginxhandson**  
+>[ec2-user@ip-172-31-14-140 mani]$ **sudo docker push maniabc/nginxhandson**  
+>The push refers to repository [docker.io/maniabc/nginxhandson]  
+>1b1edbcdc43c: Pushed  
+>56bb4945ec5e: Pushed  
+>93de57c8d576: Pushed  
+>66285ac4bf24: Mounted from library/ubuntu  
+>48334332ed8d: Mounted from library/ubuntu  
+>46c1a22ffea5: Mounted from library/ubuntu  
+>b057ab380990: Mounted from library/ubuntu  
+>latest: digest: sha256:4bafe0a1baa0dea7aa63891fb1105500f2fa95f1289409c4bdc7f091d7f05d3c size: 1782  
